@@ -19,7 +19,12 @@ ft_bzero.c \
 ft_memcpy.c \
 ft_memmove.c \
 ft_strlcpy.c \
-ft_strlcat.c
+ft_strlcat.c \
+ft_toupper.c \
+ft_tolower.c \
+ft_strchr.c \
+ft_strrchr.c \
+ft_strncmp.c
 
 # Archivos objeto
 #OBJ := $(patsubst %.c,%.o,$(FT_FILES))
