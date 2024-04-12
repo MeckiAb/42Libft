@@ -6,7 +6,7 @@
 /*   By: labderra <labderra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:52:30 by labderra          #+#    #+#             */
-/*   Updated: 2024/04/10 16:52:52 by labderra         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:12:55 by labderra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
-		return(c + 32);
+		return (c + 32);
 	return (c);
 }
