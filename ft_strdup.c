@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: labderra <labderra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 11:18:42 by labderra          #+#    #+#             */
-/*   Updated: 2024/04/12 14:17:45 by labderra         ###   ########.fr       */
+/*   Created: 2024/04/12 14:27:13 by labderra          #+#    #+#             */
+/*   Updated: 2024/04/12 14:42:06 by labderra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-int	ft_atoi(const char *str)
+char	*ft_strdup(const char *s1)
 {
-	int	sign;
-	int	acc;
+	char	*p;
+	size_t	i;
 
-	sign = 1;
-	while (*str == '\n' || *str == '\t' || *str == '\v' || *str == '\f'
-		|| *str == '\r' || *str == ' ')
-		str++;
-	if (*str == '+' || *str == '-')
+	p = (char *)malloc(sizeof(char) * ft_strlen(s1) + 1);
+	if (!p)
+		return (NULL);
+	i = 0;
+	while (i < ft_strlen(s1) + 1)
 	{
-		if (*str == '-')
-			sign = -1;
-		str++;
+		p[i] = s1[i];
+		i++;
 	}
-	while (*str >= '0' && *str <= '9')
-	{
-		acc = acc * 10 + *str - 48;
-		str++;
-	}
-	return (sign * acc);
+	return (p);
 }
