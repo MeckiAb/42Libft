@@ -34,7 +34,8 @@ ft_strdup.c \
 ft_substr.c \
 ft_strjoin.c \
 ft_strtrim.c \
-ft_split.c
+ft_split.c \
+ft_itoa.c
 
 # Archivos objeto
 #OBJ := $(patsubst %.c,%.o,$(FT_FILES))
