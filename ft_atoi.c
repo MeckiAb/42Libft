@@ -6,7 +6,7 @@
 /*   By: labderra <labderra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 11:18:42 by labderra          #+#    #+#             */
-/*   Updated: 2024/04/12 14:17:45 by labderra         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:28:23 by labderra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	ft_atoi(const char *str)
 	int	acc;
 
 	sign = 1;
+	acc = 0;
 	while (*str == '\n' || *str == '\t' || *str == '\v' || *str == '\f'
 		|| *str == '\r' || *str == ' ')
 		str++;
