@@ -6,7 +6,7 @@
 /*   By: labderra <labderra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:20:27 by labderra          #+#    #+#             */
-/*   Updated: 2024/04/15 11:52:06 by labderra         ###   ########.fr       */
+/*   Updated: 2024/04/16 09:34:48 by labderra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 		i++;
 	while (j > i && ft_strchr(set, (int)s1[j]) != NULL)
 		j--;
-	j++;
+	if (j > i)
+		j++;
 	p = (char *)malloc(sizeof(char) * (j - i + 1));
 	if (!p)
 		return (NULL);

@@ -1,42 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: labderra <labderra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 18:42:15 by labderra          #+#    #+#             */
-/*   Updated: 2024/04/16 10:39:54 by labderra         ###   ########.fr       */
+/*   Created: 2024/04/16 09:05:25 by labderra          #+#    #+#             */
+/*   Updated: 2024/04/16 09:07:39 by labderra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
-char	*ft_itoa(int n)
+void	ft_putstr_fd(char *s, int fd)
 {
-	char	str[15];
-	int		i;
-	int		sign;
-
-	sign = 0;
-	i = 14;
-	str[i--] = '\0';
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	else if (n < 0)
-	{
-		n = -n;
-		sign = -1;
-	}
-	else if (n == 0)
-		return (ft_strdup("0"));
-	while (n > 0)
-	{
-		str[i] = n % 10 + '0';
-		n = n / 10;
-		i--;
-	}
-	if (sign == -1)
-		str[i--] = '-';
-	return (ft_strdup(&str[i + 1]));
+	write(fd, s, ft_strlen(s));
 }
