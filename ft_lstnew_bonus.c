@@ -1,41 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: labderra <labderra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 11:20:27 by labderra          #+#    #+#             */
-/*   Updated: 2024/04/17 12:57:01 by labderra         ###   ########.fr       */
+/*   Created: 2024/04/16 12:03:11 by labderra          #+#    #+#             */
+/*   Updated: 2024/04/16 12:42:36 by labderra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-char	*ft_strtrim(char const *s1, char const *set)
+t_list	*ft_lstnew(void *content)
 {
-	int		i;
-	int		j;
-	int		k;
-	char	*p;
+	t_list	*p;
 
-	i = 0;
-	j = ft_strlen(s1);
-	while (s1[i] && ft_strchr(set, (int)s1[i]) != NULL)
-		i++;
-	while (j >= i && ft_strchr(set, (int)s1[j]) != NULL)
-		j--;
-	j++;
-	p = (char *)malloc(sizeof(char) * (j - i + 1));
+	p = (t_list *)malloc(sizeof(t_list));
 	if (!p)
 		return (NULL);
-	k = 0;
-	while (k < (j - i))
-	{
-		p[k] = s1[i + k];
-		k++;
-	}
-	p[k] = '\0';
+	p->content = content;
+	p->next = NULL;
 	return (p);
 }

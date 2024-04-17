@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: labderra <labderra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 11:20:27 by labderra          #+#    #+#             */
-/*   Updated: 2024/04/17 12:57:01 by labderra         ###   ########.fr       */
+/*   Created: 2024/04/17 13:21:25 by labderra          #+#    #+#             */
+/*   Updated: 2024/04/17 16:19:26 by labderra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-char	*ft_strtrim(char const *s1, char const *set)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	int		i;
-	int		j;
-	int		k;
-	char	*p;
+	t_list	*p;
 
-	i = 0;
-	j = ft_strlen(s1);
-	while (s1[i] && ft_strchr(set, (int)s1[i]) != NULL)
-		i++;
-	while (j >= i && ft_strchr(set, (int)s1[j]) != NULL)
-		j--;
-	j++;
-	p = (char *)malloc(sizeof(char) * (j - i + 1));
-	if (!p)
-		return (NULL);
-	k = 0;
-	while (k < (j - i))
+	p = *lst;
+	while (*lst)
 	{
-		p[k] = s1[i + k];
-		k++;
+		p = p->next;
+		ft_lstdelone(*lst, del);
+		*lst = p;
 	}
-	p[k] = '\0';
-	return (p);
 }

@@ -1,41 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: labderra <labderra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 11:20:27 by labderra          #+#    #+#             */
-/*   Updated: 2024/04/17 12:57:01 by labderra         ###   ########.fr       */
+/*   Created: 2024/04/16 13:07:30 by labderra          #+#    #+#             */
+/*   Updated: 2024/04/16 13:13:09 by labderra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-char	*ft_strtrim(char const *s1, char const *set)
+int	ft_lstsize(t_list *lst)
 {
-	int		i;
-	int		j;
-	int		k;
-	char	*p;
+	int	i;
 
 	i = 0;
-	j = ft_strlen(s1);
-	while (s1[i] && ft_strchr(set, (int)s1[i]) != NULL)
-		i++;
-	while (j >= i && ft_strchr(set, (int)s1[j]) != NULL)
-		j--;
-	j++;
-	p = (char *)malloc(sizeof(char) * (j - i + 1));
-	if (!p)
-		return (NULL);
-	k = 0;
-	while (k < (j - i))
+	while (lst)
 	{
-		p[k] = s1[i + k];
-		k++;
+		i++;
+		lst = lst->next;
 	}
-	p[k] = '\0';
-	return (p);
+	return (i);
 }

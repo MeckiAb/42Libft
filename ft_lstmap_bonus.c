@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: labderra <labderra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 11:20:27 by labderra          #+#    #+#             */
-/*   Updated: 2024/04/17 12:57:01 by labderra         ###   ########.fr       */
+/*   Created: 2024/04/17 16:41:47 by labderra          #+#    #+#             */
+/*   Updated: 2024/04/17 19:25:28 by labderra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-char	*ft_strtrim(char const *s1, char const *set)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int		i;
-	int		j;
-	int		k;
-	char	*p;
+	t_list	*p;
+	t_list	*new;
 
-	i = 0;
-	j = ft_strlen(s1);
-	while (s1[i] && ft_strchr(set, (int)s1[i]) != NULL)
-		i++;
-	while (j >= i && ft_strchr(set, (int)s1[j]) != NULL)
-		j--;
-	j++;
-	p = (char *)malloc(sizeof(char) * (j - i + 1));
-	if (!p)
-		return (NULL);
-	k = 0;
-	while (k < (j - i))
+	new = NULL;
+	while (lst)
 	{
-		p[k] = s1[i + k];
-		k++;
+		p = (t_list *)malloc(sizeof(*p));
+		if (!p)
+		{
+			ft_lstclear(&new, del);
+			return (NULL);
+		}
+		p->content = f(lst->content);
+		p->next = NULL;
+		ft_lstadd_back(&new, p);
+		lst = lst->next;
 	}
-	p[k] = '\0';
-	return (p);
+	return (new);
 }

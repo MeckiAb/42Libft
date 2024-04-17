@@ -1,13 +1,13 @@
-# Nombre librería
+# LIB NAME
 NAME := libft.a
 
-# Compilador
+# SYSTEM COMPILER
 CC := cc
 
-# Creación librería
+# ARCHIVER
 AR := ar
 
-# Archivos .c necesarios
+# .c FILES
 FT_FILES := ft_isalpha.c \
 ft_isdigit.c \
 ft_isalnum.c \
@@ -44,43 +44,48 @@ ft_putendl_fd.c \
 ft_putnbr_fd.c \
 
 
-# Archivos objeto
-#OBJ := $(patsubst %.c,%.o,$(FT_FILES))
+# .o FILES
 OBJ := $(FT_FILES:%.c=%.o)
 
-# Flags compilador
+# BONUS .c FILES
+FT_BONUS = \
+ft_lstnew_bonus.c \
+ft_lstadd_front_bonus.c \
+ft_lstsize_bonus.c \
+ft_lstlast_bonus.c \
+ft_lstadd_back_bonus.c \
+ft_lstdelone_bonus.c \
+ft_lstclear_bonus.c \
+ft_lstiter_bonus.c\
+ft_lstmap_bonus.c
+
+# BONUS .o FILES
+OBJ_BONUS := $(FT_BONUS:%.c=%.o)
+
+# FLAGS
 CC_FLAGS := -Wall -Wextra -Werror
 
-# Flags librería
 AR_FLAGS := -csr
 
-# Archivo include solamente para TEST
-INCLUDES := libft.h
-
-# Creación librería
+# TARGETS
 all : $(NAME)
 
 $(NAME) : $(OBJ)
 	$(AR) $(AR_FLAGS) $(NAME) $?
 
-# Creación archivos objeto 
 %.o: %.c
 	$(CC) $(CC_FLAGS) -c -o $@ $<
 
-# Clean
 clean :
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(OBJ_BONUS)
 
-# FClean
 fclean : clean 
 	rm -f $(NAME)
 
-# FClean y rehacer todo
 re : fclean all
 
-# Test con main.c
-test : all
-	$(CC) $(CC_FLAGS) -I $(INCLUDES) -o $@ main.c $(NAME)
+bonus : $(OBJ_BONUS)
+	$(AR) $(AR_FLAGS) $(NAME) $(NAME_BONUS) $?
 
-# Targets sin archivo
-.PHONY: all clean fclean re test
+# NO FILE TARGETS
+.PHONY: all clean fclean re bonus
