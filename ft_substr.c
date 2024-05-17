@@ -16,7 +16,6 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*p;
-	size_t	i;
 	size_t	size;
 
 	if (start >= ft_strlen(s))
@@ -25,15 +24,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		size = ft_strlen(s) - start;
 	else
 		size = len;
-	p = (char *)malloc(sizeof(char) * (size + 1));
+	p = (char *)ft_calloc(sizeof(char), (size + 1));
 	if (!p)
 		return (NULL);
-	i = 0;
-	while (i < size)
-	{
-		p[i] = s[i + start];
-		i++;
-	}
-	p[i] = '\0';
+	ft_memmove(p, &s[start], size);
 	return (p);
 }
