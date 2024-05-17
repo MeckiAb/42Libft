@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static int	ft_cntwords(char const *s, char c)
+static int	words(char const *s, char c)
 {
 	int	words;
 	int	i;
@@ -33,61 +33,31 @@ static int	ft_cntwords(char const *s, char c)
 	return (words);
 }
 
-static size_t	ft_wordlen(char const *s, char c)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != c && s[i])
-		i++;
-	return (i);
-}
-
-static unsigned int	ft_getword(char const *s, char c, int n)
-{
-	int				words;
-	unsigned int	i;
-
-	words = 0;
-	i = 0;
-	while (s[i])
-	{
-		while (s[i] == c && s[i])
-			i++;
-		if (!s[i])
-			break ;
-		if (words == n)
-			break ;
-		words++;
-		while (s[i] != c && s[i])
-			i++;
-	}
-	return (i);
-}
-
 char	**ft_split(char const *s, char c)
 {
 	char	**list;
 	size_t	i;
 	int		j;
 
-	list = (char **)malloc(sizeof(char *) * (ft_cntwords(s, c) + 1));
+	list = (char **)malloc(sizeof(char *) * (words(s, c) + 1));
 	if (!list)
 		return (NULL);
 	j = 0;
-	while (j < ft_cntwords(s, c))
+	while (words(s, c))
 	{
-		i = ft_wordlen(&s[ft_getword(s, c, j)], c);
-		list[j] = ft_substr(s, ft_getword(s, c, j), i);
+		while (*s && *s == c)
+			s++;
+		i = 0;
+		while (*s && *s != c && s++)
+			i++;
+		list[j] = ft_substr(s - i, 0, i);
 		if (!list[j])
 		{
-			while (j-- > 0)
+			while (j--)
 				free(list[j]);
-			free(list);
-			return (NULL);
+			return (free(list), NULL);
 		}
 		j++;
 	}
-	list[j] = NULL;
-	return (list);
+	return (list[j] = NULL, list);
 }
